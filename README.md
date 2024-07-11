@@ -1,0 +1,1 @@
+This repository includes solutions to important Linked List questions that are frequently asked in interviews and are essential for general programming purposes. These questions are taken from the A2Z Striver Sheet.
