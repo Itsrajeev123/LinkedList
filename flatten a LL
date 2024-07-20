@@ -1,0 +1,77 @@
+a very complex and important question of LL
+explain question mein vertical nodes print krani hai in sorted form .
+
+isko 2 methods se solve kr sakte hai
+1) brute force : TC and SC jyada hogi [TC- (n*m)*2 + x log x] and SC-(n*m)*2 
+approach- sabse pehle array banayenge then usme sabhi nodes ko push krenge one by one jab saare nodes push ho jayenge then sort krenege array ko,
+then array se list mein elements push krenge one by one using any convert function 
+bas uske baad main function mein sort and convert function ka use krke and logic laga ke problem solve .
+
+pseudo code is written below:
+
+convert (arr){
+if(arr.size==0) return Null;
+head=new node(arr[0]);
+temp=head;
+for(i=1;i<n-1;i++){
+newNode=new node(arr[i]);
+temp->child=newNode;
+temp=temp->child;
+}
+return head;
+}
+
+Node* flattenLinkedList(Node* head) {
+   create arr;
+   temp=head;
+   while(temp!=null){
+   t2=temp;
+   while(t2!=null){
+   arr.push(t2->data);
+   t2=t2->child;
+   }
+   temp=temp->next;
+   }
+   sort(arr);
+   head=convert(arr);
+}
+
+actual code:
+
+#include <bits/stdc++.h>
+#include <vector>
+Node *convert(vector<int> arr){
+    if(arr.size()==0)
+	    return NULL;
+    Node* head=new Node(arr[0]);
+    Node* temp=head;
+	int n=arr.size();
+    for(int i=1;i<=n-1;i++){
+        Node* newNode=new Node(arr[i]);
+        temp->child=newNode;
+        temp=temp->child;
+    }
+return head;
+}
+
+Node* flattenLinkedList(Node* head) {
+    vector<int> arr; 
+    Node* temp=head;
+    while(temp!=NULL){
+        Node* t2=temp;
+        while(t2!=NULL){
+            arr.push_back(t2->data);
+            t2=t2->child;
+        }
+        temp=temp->next;
+    }
+    sort(arr.begin(),arr.end());
+    head=convert(arr);
+	return head;
+}
+
+
+2) recursion : more optimized code then brute force .
+
+
+
