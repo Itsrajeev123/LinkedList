@@ -71,7 +71,48 @@ Node* flattenLinkedList(Node* head) {
 }
 
 
-2) recursion : more optimized code then brute force .
+2) recursion : more optimized code then brute force . TC->O(2NM) and SC-> O(N)
+merge ke use krenge isme ,
+pehle last ke 2 columns ko merge krenge sort krke then aise aise first wale column tak same hoga process using recusrion .
 
+code:
 
+Node* merge(Node* list1, Node* list2){
+    Node* dummyNode = new Node(-1);
+    Node* res = dummyNode;
 
+    while(list1 != NULL && list2 != NULL){
+        if(list1->data < list2->data){
+            res->child = list1;
+            res = list1;
+            list1 = list1->child;
+        }
+        else{
+            res->child = list2;
+            res = list2;
+            list2 = list2->child;
+        }
+        res->next = NULL;
+    }
+    if(list1){
+        res->child = list1;
+    }
+    else {
+        res->child = list2;
+    }
+    if(dummyNode->child){
+        dummyNode->child->next = NULL;
+    }
+
+    return dummyNode->child;
+}
+
+//main function
+Node* flattenLinkedList(Node* head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    Node* mergedHead = flattenLinkedList(head->next);
+    head = merge(head, mergedHead);
+    return head;
+}
